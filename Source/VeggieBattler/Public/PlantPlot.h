@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "PlantPlot.generated.h"
 
+class UCropData;
+
 UENUM(BlueprintType)
 enum class EPlotState : uint8
 {
@@ -21,7 +23,10 @@ class VEGGIEBATTLER_API APlantPlot : public AActor
 
 public:
 	APlantPlot();
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "PlantPlot")
+	TObjectPtr<UCropData> CropToGrow;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Plant Plot")
 	float GrowTimeSeconds = 5.0f;
 

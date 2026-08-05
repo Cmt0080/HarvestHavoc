@@ -2,6 +2,7 @@
 
 #include "PlantPlot.h"
 #include "TimerManager.h"
+#include "CropData.h"
 
 APlantPlot::APlantPlot()
 {
@@ -13,15 +14,19 @@ void APlantPlot::Interact()
 	switch (CurrentState)
 	{
 	case EPlotState::Empty:
-		SetState(EPlotState::Growing);
-		GetWorldTimerManager().SetTimer(
-			GrowTimerHandle,
-			this,
-			&APlantPlot::FinishGrowing,
-			GrowTimeSeconds,
-			false);
-		break;
-
+		{
+			SetState(EPlotState::Growing);
+		
+			const float Duration = CropToGrow ?	CropToGrow->GrowTimeSeconds : GrowTimeSeconds;
+		
+			GetWorldTimerManager().SetTimer(
+				GrowTimerHandle,
+				this,
+				&APlantPlot::FinishGrowing,
+				Duration,
+				false);
+			break;
+		}
 	case EPlotState::Growing:
 		break;
 
