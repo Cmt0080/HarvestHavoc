@@ -1,0 +1,9 @@
+﻿Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.idea/
+*.sln
+
+.vs/
+UpgradeLog.htm
